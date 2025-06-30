@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏗️ Инвестиционный проект - Жилой дом в Prule, Ljubljana</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.2rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: #e5e7eb;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .image-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .profit-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .profit-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 2s ease;
+        }
+        
+        .risk-low { background: #10b981; }
+        .risk-medium { background: #f59e0b; }
+        .risk-high { background: #ef4444; }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 3rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    🏗️ ИНВЕСТИЦИОННЫЙ ПРОЕКТ
+                </h1>
+                <p class="text-xl md:text-2xl mb-2">
+                    Индивидуальный жилой дом в Prule, Ljubljana
+                </p>
+                <p class="text-lg opacity-90">407 м² • €407,000 • Готовое разрешение</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        
+        <!-- 1. Объект и локация -->
+        <section class="mb-12 animate-fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold mb-6 gradient-text">
+                    <i class="fas fa-map-marker-alt mr-3"></i>1. Объект и локация
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-location-dot text-blue-600"></i>
+                                <span><strong>Адрес:</strong> Trnovsko predmestje, Prule, Ljubljana</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-land-mark-alt text-green-600"></i>
+                                <span><strong>Тип:</strong> zazidljiva zemljišča (застраиваемый участок)</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-ruler-combined text-purple-600"></i>
+                                <span><strong>Площадь:</strong> 407 м²</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-euro-sign text-yellow-600"></i>
+                                <span><strong>Цена:</strong> 407.000 €</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-green-600"></i>
+                                <span><strong>Статус:</strong> Правомочное разрешение + оплаченный комунальный взнос</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 mb-2">Проект дома:</h4>
+                            <ul class="space-y-1 text-blue-700">
+                                <li>• Этажность: P+N (одноэтажный с мансардой)</li>
+                                <li>• Брутто: 184 м²</li>
+                                <li>• Нетто: 138 м²</li>
+                                <li>• Паркоместа: 2</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="image-gallery">
+                        <img src="https://raw.githubusercontent.com/miragconsulting/trnovo/main/trnovo1_2025-06-30_09-25-30.jpg" alt="Участок в Трново - вид 1" class="card-hover">
+                        <img src="https://raw.githubusercontent.com/miragconsulting/trnovo/main/trnovo2_2025-06-30_09-25-54.jpg" alt="Участок в Трново - вид 2" class="card-hover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 2. Рыночный анализ -->
+        <section class="mb-12">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold mb-6 gradient-text">
+                    <i class="fas fa-chart-line mr-3"></i>2. Рыночный анализ: Trnovo – Prule – Ljubljana
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold mb-4 text-gray-800">
+                                <i class="fas fa-map-location-dot text-blue-600 mr-2"></i>Локация:
+                            </h3>
+                            <ul class="space-y-2 text-gray-700 pl-4">
+                                <li>• Один из самых престижных районов в Любляне</li>
+                                <li>• Центральное расположение, тишина, престиж</li>
+                                <li>• Расположен вдоль реки Ljubljanica</li>
+                                <li>• Пешеходная доступность до центра города</li>
+                                <li>• Стабильно высокий спрос на покупку и аренду</li>
+                            </ul>
+                        </div>
+                        
+                        <img src="https://raw.githubusercontent.com/miragconsulting/trnovo/main/trnovo3_2025-06-30_09-26-18.jpg" alt="Карта района Трново" class="rounded-lg shadow-md">
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">
+                            <i class="fas fa-table text-green-600 mr-2"></i>Анализ предложений (2025):
+                        </h3>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="border p-3 text-left font-semibold">Тип недвижимости</th>
+                                        <th class="border p-3 text-left font-semibold">Средняя цена</th>
+                                        <th class="border p-3 text-left font-semibold">€/м² нетто</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border p-3">Новые дома в Prule</td>
+                                        <td class="border p-3 font-semibold text-green-600">890.000–1.100.000 €</td>
+                                        <td class="border p-3 text-blue-600">6.300–7.500 €/м²</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="border p-3">Старые дома/реновации</td>
+                                        <td class="border p-3 font-semibold text-green-600">650.000–800.000 €</td>
+                                        <td class="border p-3 text-blue-600">4.500–5.800 €/м²</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border p-3">Премиальные квартиры</td>
+                                        <td class="border p-3 font-semibold text-green-600">6.000–8.000 €/м²</td>
+                                        <td class="border p-3">—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="mt-4 p-4 bg-green-50 rounded-lg">
+                            <p class="text-green-800 font-semibold">
+                                <i class="fas fa-lightbulb mr-2"></i>Вывод: рынок высоколиквидный, предложение ограничено, особенно на участки с разрешением на строительство.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 3. План строительства -->
+        <section class="mb-12">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold mb-6 gradient-text">
+                    <i class="fas fa-tools mr-3"></i>3. План строительства
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">
+                            <i class="fas fa-drafting-compass text-purple-600 mr-2"></i>Архитектурный проект:
+                        </h3>
+                        <ul class="space-y-2 text-gray-700 mb-6">
+                            <li>• Индивидуальный жилой дом, класс энергоэффективности A1</li>
+                            <li>• Большие стеклянные поверхности, минимализм</li>
+                            <li>• Парковка для 2 автомобилей</li>
+                            <li>• Возможность добавить бассейн, сауну или зимний сад</li>
+                        </ul>
+                        
+                        <img src="https://raw.githubusercontent.com/miragconsulting/trnovo/main/trnovo3d.jpg" alt="3D визуализация дома" class="rounded-lg shadow-md card-hover">
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">
+                            <i class="fas fa-calendar-check text-blue-600 mr-2"></i>Стадии строительства:
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="timeline-item">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-blue-800">Подготовка участка</h4>
+                                    <p class="text-blue-600 text-sm">1 месяц • Очистка, установка забора</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-800">Земляные работы</h4>
+                                    <p class="text-green-600 text-sm">1 месяс • Котлован, закладка фундамента</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="bg-purple-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-purple-800">Строительство (коробка)</h4>
+                                    <p class="text-purple-600 text-sm">3 месяца • Стены, крыша</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="bg-yellow-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-yellow-800">Установка окон, фасад</h4>
+                                    <p class="text-yellow-600 text-sm">1 месяц • Алюминиевые окна, утепление</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="bg-red-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-red-800">Внутренние работы</h4>
+                                    <p class="text-red-600 text-sm">3 месяца • Электрика, сантехника, отделка</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-gray-800">Оформление, подключение, сдача</h4>
+                                    <p class="text-gray-600 text-sm">1–2 месяца • Финальные подключения, разрешения</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 p-4 bg-green-100 rounded-lg">
+                            <p class="text-green-800 font-bold text-center">
+                                <i class="fas fa-clock mr-2"></i>Итого: ~10 месяцев (без задержек, «под ключ»)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 4. Финансовый план -->
+        <section class="mb-12">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold mb-6 gradient-text">
+                    <i class="fas fa-calculator mr-3"></i>4. Финансовый план
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <!-- Затраты -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-red-700">
+                            <i class="fas fa-money-bill-wave mr-2"></i>💸 Затраты:
+                        </h3>
+                        
+                        <div class="space-y-3">
+                            <div class="stat-card">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Покупка участка</span>
+                                    <span class="font-bold text-red-600">407.000 €</span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Архитектор + технадзор + разрешения</span>
+                                    <span class="font-bold text-red-600">25.000 €</span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Строительство (138 м² × 2.200 €/м²)</span>
+                                    <span class="font-bold text-red-600">303.600 €</span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Внешнее благоустройство</span>
+                                    <span class="font-bold text-red-600">25.000 €</span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Непредвиденные расходы (5-7%)</span>
+                                    <span class="font-bold text-red-600">35.000 €</span>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card bg-red-100 border-red-300">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-red-800">ИТОГО</span>
+                                    <span class="font-bold text-2xl text-red-800">~795.000 €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Доходы -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-green-700">
+                            <i class="fas fa-chart-line-up mr-2"></i>💵 Доход:
+                        </h3>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="stat-card">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-gray-700">Консервативный (6.000 €/м²)</span>
+                                    <span class="font-bold text-green-600">828.000 €</span>
+                                </div>
+                                <div class="profit-bar">
+                                    <div class="profit-fill risk-medium" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-gray-700">Реалистичный (6.500 €/м²)</span>
+                                    <span class="font-bold text-green-600">897.000 €</span>
+                                </div>
+                                <div class="profit-bar">
+                                    <div class="profit-fill risk-low" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-gray-700">Оптимистичный (7.000 €/м²)</span>
+                                    <span class="font-bold text-green-600">966.000 €</span>
+                                </div>
+                                <div class="profit-bar">
+                                    <div class="profit-fill risk-low" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Прогноз прибыли -->
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">
+                        <i class="fas fa-chart-bar mr-2"></i>📈 Прогноз прибыли:
+                    </h3>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr class="bg-white">
+                                    <th class="border border-gray-300 p-3 text-left font-semibold">Сценарий</th>
+                                    <th class="border border-gray-300 p-3 text-left font-semibold">Доход</th>
+                                    <th class="border border-gray-300 p-3 text-left font-semibold">Инвестиции</th>
+                                    <th class="border border-gray-300 p-3 text-left font-semibold">Прибыль</th>
+                                    <th class="border border-gray-300 p-3 text-left font-semibold">Рентабельность</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-300 p-3 font-semibold">Консервативный</td>
+                                    <td class="border border-gray-300 p-3 text-green-600">828.000 €</td>
+                                    <td class="border border-gray-300 p-3 text-red-600">795.000 €</td>
+                                    <td class="border border-gray-300 p-3 text-green-600 font-bold">33.000 €</td>
+                                    <td class="border border-gray-300 p-3 text-blue-600 font-bold">~4%</td>
+                                </tr>
+                                <tr class="bg-green-50">
+                                    <td class="border border-gray-300 p-3 font-semibold">Реалистичный</td>
+                                    <td class="border border-gray-300 p-3 text-green-600">897.000 €</td>
+                                    <td class="border border-gray-300 p-3 text-red-600">795.000 €</td>
+                                    <td class="border border-gray-300 p-3 text-green-600 font-bold">102.000 €</td>
+                                    <td class="border border-gray-300 p-3 text-blue-600 font-bold">~13%</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-3 font-semibold">Оптимистичный</td>
+                                    <td class="border border-gray-300 p-3 text-green-600">966.000 €</td>
+                                    <td class="border border-gray-300 p-3 text-red-600">795.000 €</td>
+                                    <td class="border border-gray-300 p-3 text-green-600 font-bold">171.000 €</td>
+                                    <td class="border border-gray-300 p-3 text-blue-600 font-bold">~21%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- График прибыльности -->
+                <div class="mt-6">
+                    <canvas id="profitChart" style="height: 300px;"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 5. График реализации проекта -->
+        <section class="mb-12">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold mb-6 gradient-text">
+                    <i class="fas fa-calendar-days mr-3"></i>5. График реализации проекта
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4 p-4 bg-blue-50 rounded-lg">
+                            <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <div class="font-semibold text-blue-800">Закрытие сделки, старт работ</div>
+                                <div class="text-blue-600 text-sm">Месяц 1</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 p-4 bg-green-50 rounded-lg">
+                            <div class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2-4</div>
+                            <div>
+                                <div class="font-semibold text-green-800">Земляные и строительные работы</div>
+                                <div class="text-green-600 text-sm">Месяцы 2-4</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 p-4 bg-purple-50 rounded-lg">
+                            <div class="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">5-7</div>
+                            <div>
+                                <div class="font-semibold text-purple-800">Окна, фасад, кровля, инженерия</div>
+                                <div class="text-purple-600 text-sm">Месяцы 5-7</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 p-4 bg-yellow-50 rounded-lg">
+                            <div class="bg-yellow-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">8-10</div>
+                            <div>
+                                <div class="font-semibold text-yellow-800">Внутренние работы, отделка</div>
+                                <div class="text-yellow-600 text-sm">Месяцы 8-10</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 p-4 bg-red-50 rounded-lg">
+                            <div class="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">11</div>
+                            <div>
+                                <div class="font-semibold text-red-800">Финализация, разрешения, фото</div>
+                                <div class="text-red-600 text-sm">Месяц 11</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                            <div class="bg-gray-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">12</div>
+                            <div>
+                                <div class="font-semibold text-gray-800">Продажа объекта / маркетинг</div>
+                                <div class="text-gray-600 text-sm">Месяц 12</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <canvas id="timelineChart" style="height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 6. Риски и защита -->
+        <section class="mb-12">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold mb-6 gradient-text">
+                    <i class="fas fa-shield-halved mr-3"></i>6. Риски и защита
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="border border-red-200 rounded-lg p-4 bg-red-50">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-exclamation-triangle text-red-600"></i>
+                                <h4 class="font-semibold text-red-800">Удорожание стройматериалов</h4>
+                            </div>
+                            <p class="text-red-700 text-sm">Рост цен на строительные материалы</p>
+                        </div>
+                        
+                        <div class="border border-yellow-200 rounded-lg p-4 bg-yellow-50">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-clock text-yellow-600"></i>
+                                <h4 class="font-semibold text-yellow-800">Задержка сроков</h4>
+                            </div>
+                            <p class="text-yellow-700 text-sm">Непредвиденные задержки в строительстве</p>
+                        </div>
+                        
+                        <div class="border border-orange-200 rounded-lg p-4 bg-orange-50">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-chart-line-down text-orange-600"></i>
+                                <h4 class="font-semibold text-orange-800">Падение рынка</h4>
+                            </div>
+                            <p class="text-orange-700 text-sm">Снижение цен на недвижимость</p>
+                        </div>
+                        
+                        <div class="border border-purple-200 rounded-lg p-4 bg-purple-50">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-home text-purple-600"></i>
+                                <h4 class="font-semibold text-purple-800">Сложность с продажей</h4>
+                            </div>
+                            <p class="text-purple-700 text-sm">Трудности с поиском покупателя</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border border-green-200 rounded-lg p-4 bg-green-50">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-handshake text-green-600"></i>
+                                <h4 class="font-semibold text-green-800">Контракты с фиксированными ценами</h4>
+                            </div>
+                            <p class="text-green-700 text-sm">Защита от роста стоимости материалов</p>
+                        </div>
+                        
+                        <div class="border border-blue-200 rounded-lg p-4 bg-blue-50">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-users text-blue-600"></i>
+                                <h4 class="font-semibold text-blue-800">Опытная строительная компания</h4>
+                            </div>
+                            <p class="text-blue-700 text-sm">Соблюдение сроков и качества</p>
+                        </div>
+                        
+                        <div class="border border-teal-200 rounded-lg p-4 bg-teal-50">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-crown text-teal-600"></i>
+                                <h4 class="font-semibold text-teal-800">Премиум-сегмент более устойчив</h4>
+                            </div>
+                            <p class="text-teal-700 text-sm">Элитная недвижимость менее волатильна</p>
+                        </div>
+                        
+                        <div class="border border-indigo-200 rounded-lg p-4 bg-indigo-50">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <i class="fas fa-key text-indigo-600"></i>
+                                <h4 class="font-semibold text-indigo-800">Возможность использования для аренды</h4>
+                            </div>
+                            <p class="text-indigo-700 text-sm">Альтернативная стратегия монетизации</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 7. Альтернативные стратегии -->
+        <section class="mb-12">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold mb-6 gradient-text">
+                    <i class="fas fa-lightbulb mr-3"></i>7. Альтернативные стратегии
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="card-hover bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
+                        <div class="text-center">
+                            <i class="fas fa-file-contract text-4xl text-blue-600 mb-4"></i>
+                            <h3 class="text-lg font-semibold text-blue-800 mb-2">Продажа готового проекта</h3>
+                            <p class="text-blue-700 text-sm mb-4">с разрешением</p>
+                            <div class="bg-blue-200 rounded-lg p-3">
+                                <p class="font-semibold text-blue-800">Потенциальная наценка</p>
+                                <p class="text-2xl font-bold text-blue-900">10–15%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-hover bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl border border-green-200">
+                        <div class="text-center">
+                            <i class="fas fa-home text-4xl text-green-600 mb-4"></i>
+                            <h3 class="text-lg font-semibold text-green-800 mb-2">Аренда готового дома</h3>
+                            <p class="text-green-700 text-sm mb-4">long-term</p>
+                            <div class="bg-green-200 rounded-lg p-3">
+                                <p class="font-semibold text-green-800">3.000–3.500 €/мес</p>
+                                <p class="text-lg font-bold text-green-900">~4,5–5% годовых</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-hover bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
+                        <div class="text-center">
+                            <i class="fas fa-plane text-4xl text-purple-600 mb-4"></i>
+                            <h3 class="text-lg font-semibold text-purple-800 mb-2">Аренда short-term</h3>
+                            <p class="text-purple-700 text-sm mb-4">VIP Airbnb</p>
+                            <div class="bg-purple-200 rounded-lg p-3">
+                                <p class="font-semibold text-purple-800">5.000–6.000 €/мес</p>
+                                <p class="text-lg font-bold text-purple-900">Высокая доходность</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Заключение -->
+        <section class="mb-12">
+            <div class="gradient-bg text-white rounded-2xl shadow-lg p-8 text-center">
+                <h2 class="text-3xl font-bold mb-6">
+                    <i class="fas fa-check-circle mr-3"></i>✅ Вывод
+                </h2>
+                
+                <p class="text-lg leading-relaxed mb-6">
+                    Проект представляет <strong>высококлассную инвестиционную возможность</strong> 
+                    в одном из лучших районов Любляны. Учитывая уже полученное разрешение, 
+                    оплаченные взносы и актуальный дефицит предложений в Prule, 
+                    ожидаемая доходность проекта <strong>13–20% при продаже</strong>, 
+                    а в случае сдачи — до <strong>5% годовых в аренду</strong>.
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <i class="fas fa-trophy text-3xl mb-2"></i>
+                        <div class="font-bold text-xl">Премиум-локация</div>
+                        <div class="text-sm opacity-90">Prule, Ljubljana</div>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <i class="fas fa-percent text-3xl mb-2"></i>
+                        <div class="font-bold text-xl">13–21%</div>
+                        <div class="text-sm opacity-90">Ожидаемая доходность</div>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <i class="fas fa-calendar text-3xl mb-2"></i>
+                        <div class="font-bold text-xl">12 месяцев</div>
+                        <div class="text-sm opacity-90">Срок реализации</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Анимация чисел
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.animate-number');
+            numbers.forEach(num => {
+                const target = parseInt(num.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    num.textContent = Math.floor(current).toLocaleString();
+                }, 20);
+            });
+        }
+
+        // График прибыльности
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Консервативный', 'Реалистичный', 'Оптимистичный'],
+                datasets: [{
+                    label: 'Доходы (€)',
+                    data: [828000, 897000, 966000],
+                    backgroundColor: 'rgba(34, 197, 94, 0.8)',
+                    borderColor: 'rgb(34, 197, 94)',
+                    borderWidth: 2
+                }, {
+                    label: 'Затраты (€)',
+                    data: [795000, 795000, 795000],
+                    backgroundColor: 'rgba(239, 68, 68, 0.8)',
+                    borderColor: 'rgb(239, 68, 68)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Сравнение доходов и затрат по сценариям'
+                    },
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '€' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // График временной линии
+        const timelineCtx = document.getElementById('timelineChart').getContext('2d');
+        new Chart(timelineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Мес 1', 'Мес 2-4', 'Мес 5-7', 'Мес 8-10', 'Мес 11', 'Мес 12'],
+                datasets: [{
+                    label: 'Прогресс строительства (%)',
+                    data: [10, 40, 70, 90, 95, 100],
+                    borderColor: 'rgb(102, 126, 234)',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'График реализации проекта'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Плавное появление элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Анимация полос прогресса
+        setTimeout(() => {
+            const progressBars = document.querySelectorAll('.profit-fill');
+            progressBars.forEach(bar => {
+                bar.style.width = bar.style.width;
+            });
+        }, 1000);
+    </script>
+</body>
+</html>
